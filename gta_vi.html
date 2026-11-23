@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grand Theft Auto VI — Welcome to Leonida</title>
+  <link rel="preconnect" href="https://googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #09060e;
+      --bg-card: #130d1e;
+      --neon-pink: #ff2a85;
+      --neon-purple: #8a2be2;
+      --sunset-orange: #ff7b00;
+      --sunset-gold: #ffd166;
+      --cyan-accent: #00f5d4;
+      --text-main: #f8f9fa;
+      --text-muted: #b8b0c8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.2rem 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(9, 6, 14, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 42, 133, 0.2);
+      z-index: 1000;
+    }
+
+    .logo {
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, var(--sunset-gold), var(--neon-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav a {
+      color: var(--text-main);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--neon-pink);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+      background: 
+        radial-gradient(circle at 50% 30%, rgba(255, 42, 133, 0.28), transparent 60%),
+        radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.25), transparent 55%),
+        linear-gradient(180deg, #160926 0%, var(--bg-dark) 100%);
+      position: relative;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.4rem 1.1rem;
+      border: 1px solid var(--cyan-accent);
+      color: var(--cyan-accent);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 15px rgba(0, 245, 212, 0.2);
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 900;
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h1 span {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      background: linear-gradient(135deg, var(--sunset-gold), var(--sunset-orange), var(--neon-pink), var(--neon-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 6px 25px rgba(255, 42, 133, 0.45));
+    }
+
+    .hero p {
+      max-width: 680px;
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin: 1.5rem auto 2.5rem;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 1rem 2.2rem;
+      border-radius: 6px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--neon-pink), var(--sunset-orange));
+      color: #fff;
+      box-shadow: 0 8px 25px rgba(255, 42, 133, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(255, 42, 133, 0.6);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-main);
+      border: 2px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--cyan-accent);
+      color: var(--cyan-accent);
+      transform: translateY(-3px);
+    }
+
+    /* Sections General */
+    section {
+      padding: 5.5rem 8%;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.4rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .section-title span {
+      color: var(--neon-pink);
+    }
+
+    .section-lead {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 780px;
+      margin-bottom: 3rem;
+    }
+
+    /* Overview Grid */
+    .overview-box {
+      background: linear-gradient(145deg, #160f24, #0e0917);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: 4px solid var(--neon-pink);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .overview-box h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--sunset-gold);
+    }
+
+    .overview-box p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Cards Grid (Characters & Features) */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 14px;
+      padding: 2rem;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: var(--neon-pink);
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--cyan-accent);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    /* Platforms Strip */
+    .platforms {
+      text-align: center;
+      background: linear-gradient(90deg, rgba(255, 42, 133, 0.1), rgba(138, 43, 226, 0.1));
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 3.5rem 6%;
+      max-width: 100%;
+    }
+
+    .platform-list {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .platform-pill {
+      padding: 0.8rem 1.8rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer strong {
+      color: var(--text-main);
+    }
+
+    @media (max-width: 680px) {
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="logo">GTA VI</div>
+    <nav>
+      <a href="#overview">Overview</a>
+      <a href="#protagonists">Protagonists</a>
+      <a href="#leonida">Leonida</a>
+      <a href="#platforms">Platforms</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <span class="badge">Rockstar Games • Out Now</span>
+    <h1>Grand Theft Auto <span>VI</span></h1>
+    <p>
+      Head to the state of Leonida, home to the neon-soaked streets of Vice City and beyond, in the biggest, most immersive evolution of the Grand Theft Auto series yet.
+    </p>
+    <div class="cta-group">
+      <a href="#overview" class="btn btn-primary">Explore Leonida</a>
+      <a href="#protagonists" class="btn btn-secondary">Meet the Duo</a>
+    </div>
+  </div>
+
+  <!-- Main Description / Overview -->
+  <section id="overview">
+    <h2 class="section-title">The Story <span>&amp; Setting</span></h2>
+    <p class="section-lead">
+      A modern-day crime saga set across sun-drenched beaches, sprawling wetlands, and high-stakes criminal underworlds.
+    </p>
+    <div class="overview-box">
+      <h3>Welcome to Vice City, Leonida</h3>
+      <p>
+        <strong>Grand Theft Auto VI</strong> returns players to the iconic Vice City—reimagined for a modern era within the broader fictional state of Leonida (inspired by Florida). From luxury beachfront high-rises and vibrant nightlife districts to the wild, alligator-filled Grassrivers and coastal keys, every corner of the map pulses with chaotic energy, viral social media culture, and systemic open-world life.
+      </p>
+      <p>
+        Built around a high-risk partnership, the narrative follows dual protagonists navigating a web of heists, law enforcement pressure, and betrayal where trust is the only currency that matters.
+      </p>
+    </div>
+  </section>
+
+  <!-- Dual Protagonists -->
+  <section id="protagonists">
+    <h2 class="section-title">Dual <span>Protagonists</span></h2>
+    <p class="section-lead">
+      Two outlaws bound together in a modern Bonnie-and-Clyde criminal partnership.
+    </p>
+    <div class="grid-2">
+      <div class="card">
+        <span class="card-tag">Lead Protagonist 01</span>
+        <h3>Lucia</h3>
+        <p>
